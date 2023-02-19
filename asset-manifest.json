@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Sticky-Subscription/static/css/main.f74d1470.css",
+    "main.css": "/Sticky-Subscription/static/css/main.5ec24def.css",
     "main.js": "/Sticky-Subscription/static/js/main.a1f7e88c.js",
     "static/js/787.28cb0dcd.chunk.js": "/Sticky-Subscription/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/Sticky-Subscription/index.html",
-    "main.f74d1470.css.map": "/Sticky-Subscription/static/css/main.f74d1470.css.map",
+    "main.5ec24def.css.map": "/Sticky-Subscription/static/css/main.5ec24def.css.map",
     "main.a1f7e88c.js.map": "/Sticky-Subscription/static/js/main.a1f7e88c.js.map",
     "787.28cb0dcd.chunk.js.map": "/Sticky-Subscription/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f74d1470.css",
+    "static/css/main.5ec24def.css",
     "static/js/main.a1f7e88c.js"
   ]
 }
