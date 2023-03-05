@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Sticky-Sub/static/css/main.5ec24def.css",
-    "main.js": "/Sticky-Sub/static/js/main.50afe725.js",
-    "static/js/787.28cb0dcd.chunk.js": "/Sticky-Sub/static/js/787.28cb0dcd.chunk.js",
-    "index.html": "/Sticky-Sub/index.html",
-    "main.5ec24def.css.map": "/Sticky-Sub/static/css/main.5ec24def.css.map",
-    "main.50afe725.js.map": "/Sticky-Sub/static/js/main.50afe725.js.map",
-    "787.28cb0dcd.chunk.js.map": "/Sticky-Sub/static/js/787.28cb0dcd.chunk.js.map"
+    "main.css": "/Sticky-Subscription/static/css/main.5ec24def.css",
+    "main.js": "/Sticky-Subscription/static/js/main.3772bae1.js",
+    "static/js/787.28cb0dcd.chunk.js": "/Sticky-Subscription/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/Sticky-Subscription/index.html",
+    "main.5ec24def.css.map": "/Sticky-Subscription/static/css/main.5ec24def.css.map",
+    "main.3772bae1.js.map": "/Sticky-Subscription/static/js/main.3772bae1.js.map",
+    "787.28cb0dcd.chunk.js.map": "/Sticky-Subscription/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5ec24def.css",
-    "static/js/main.50afe725.js"
+    "static/js/main.3772bae1.js"
   ]
 }
