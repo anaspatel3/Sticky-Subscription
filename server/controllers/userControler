@@ -1,0 +1,20 @@
+const userDet = require('../models/userDetails')
+const mongoose = require('mongoose');
+
+const getUser = async(req, res) => {
+    const {id} = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: "No such Subscription"})
+    }
+    const sub = await userDet.findById(id)
+
+    if(!sub){
+        return res.status(404).json({error: "No Subscription email" })
+    }
+    res.status(200).json(sub)
+}
+
+module.exports = {
+    getUser
+}

@@ -2,64 +2,59 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
-const UserInfoRoutes = require('./Routes/userInfo')
-require("./userDetails");
+const subRoutes = require('./Routes/subscriptions')
+const userRoutes = require('./Routes/user')
+
+const userDat = require("./models/userDetails")
+
 const app = express()
-app.use(express.json())
 const cors = require("cors");
 app.use(cors());
+//Bcrypt
+const bcrypt = require("bcryptjs");
+//Json Web Token
 const jwt = require("jsonwebtoken");
-
-//const bcrypt = require("bcryptjs");
-//Express App
-
+//Middleware
+app.use(express.json())
 // app.use((req, res, next) => {
 //     console.log(req.path, req.method)
 //     next();
 // })
 
-const JWT_SEC = "sdjhfbdfbsfreferg";
-
-app.get('/', (req, res) => {
-    res.json({mssg: 'welcom'})
-})
+const JWT_SEC = "sdjhfbdfbsfrq3243fss()YT6rdrgeferg";
 
 app.post('/post', async(req,res) =>{
     console.log(req.body);
 })
 
 
-app.use('/api/userInfo',UserInfoRoutes)
-
-
+app.use('/api/subscriptions',subRoutes)
+app.use('/api/user',userRoutes)
 
 
 
  
 const user = mongoose.model("userDetails")
 
-
-
-
-
 //Register API
 app.post("/register", async(req,res) => {
 
     const {firstName,lastName,contact,email,password} = req.body;
 
-    //const encryptedPass = await bcrypt.hash(password,8);
+    const encryptedPass = await bcrypt.hash(password,8);
     try {
         const oldUser = await user.findOne({email});
 
         if(oldUser){
             return res.send({error: "User Already Exist"})
+
         }
         await user.create({
             firstName,
             lastName,
             contact,
             email,
-            password,
+            password:encryptedPass,
         });
         res.send({status:"ok"})
     } catch (error) {
@@ -73,38 +68,47 @@ app.post("/login", async(req, res) => {
 
     const {email, password} = req.body
 
-    try {
-        const Euser = await user.findOne({ email });
-        if(!Euser){
-            
-             return res.json({status:"noData", error: "User Not Found"})
-        }
-        const token = jwt.sign({}, JWT_SEC);
+    const Euser = await user.findOne({ email });
+    if(!Euser){
+        
+            return res.json({status:"error", error: "User Not Found"})
+    }
+    
 
-        if(Euser.password == password){
+    if(await bcrypt.compare(password, Euser.password)){
+        console.log("Passward correct")
+        const token = jwt.sign({email: Euser.email}, JWT_SEC);  
+        
+        if(res.status(201)){
             return res.json({status: "ok", data: token})
-            
-             
         }
         else{
-            return res.json({status:"invalidPass", error:"Invalid Pass"});
-            
-            
+            return res.json({status: "error", error:"Error"})
         }
-        
-        
-    } catch (error) {
-        return res.json({status:"error"});
     }
-        
-        
- 
-    
-
-    
-    
-    
+    res.json({status:"Invalid", error:"Invalid Pass"});   
 });
+
+
+//Homepage API
+app.post("/homepage", async(req, res) =>{
+    const{token} = req.body;
+    try {
+        const huser = jwt.verify(token, JWT_SEC);
+        const userEmail = huser.email;
+        user.findOne({email: userEmail}).then((data) => {
+            res.send({status: "ok", data: data});
+            
+        })
+        .catch((error) =>{
+            res.send({status: "error", data: error});
+        })
+    } catch (error) {
+        
+    }
+})
+
+
 
 
 

@@ -38,6 +38,22 @@ export default class Register extends Component{
         .then((res) => res.json())
         .then((data) => {
             console.log(data, "userRegister");
+            if(data.status === "ok"){
+                alert("User Successfully Registered")
+                const addToCache = (cacheName, url, response) => {
+                    const data = new Response(JSON.stringify(response))
+
+                    if('caches' in window){
+                        caches.open(cacheName).then((cache) => {
+                            cache.put(url, data);
+                            alert("Cache")
+                        });
+                    }
+                }
+            }
+            else{
+                alert("User Already Exixt")
+            }
         });
     }
 
@@ -90,7 +106,7 @@ export default class Register extends Component{
                         name="password"
                         required/>
     
-                    <button className="button1" type="submit">Sign Up</button>
+                    <button className="button1" type="submit" onClick={() => this.addToCache('myCache','http://localhost:3000/Register','Sample')}>Sign Up</button>
 
                     <p><a href="/Sticky-Subscription">Already Have an Account</a></p>
     

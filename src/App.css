@@ -1,19 +1,127 @@
-.App {
+
+
+body{
+  background-color: #f1f1f1;
+  margin: 0;
+}
+
+
+header{
+  background: #ffff;
+  width: 140%;
+}
+
+header .container{
+  max-width: 1400px;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: space-between;
+  display: flex;
+  padding: 10px 20px;
+} 
+
+header a {
+  color: #333;
+  text-decoration: none;
+  
+}
+
+.home {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.subs-details{
+  background-color: #6f9aa7;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  top: 5%;
+  box-shadow: 2px,2px, 5px rgba(0,0,0,0.05);
+  
+}
+
+.subs-details h3 {
+  margin: 0 0 10px 0;
+  font-size: 0.9em;
+  color: #424f65;
+}
+
+.subs-details p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #444;
+}
+
+.subs-details span {
+  position: absolute;
+  top:  20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+
+.create label, .create input{
+  
+  position: relative;
+  left: 20px;
+  display: block;
+}
+
+.create input{
+  position: relative;
+  left: 20px;
+  padding: 10px;
+  margin-top: 1px;
+  margin-bottom: 20px;
+  width: 80%;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.create button{
+  
+  position: relative;
+  left: 100px;
+  background: #6f9aa7;
+  border: 0;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  
+}
+
+.create .error{
+  padding: 5px;
+  background: #ffefef;
+  border: 1px solid red;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+.auto-form-container {
   text-align: center;
   display: flex;
   min-height: 100vh;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   background-image: linear-gradient(79deg, #91abb2, #768aa3 , #659da8 );
 }
 
 .auto-form-container, .login-form, .register-form {
   display: flex;
   flex-direction: column;
+
+  
 }
 
 h1{
-  color: #35393b;
+  color: #a6b9c3;
 }
 
 .login-form {
@@ -27,12 +135,13 @@ h1{
   padding: 2rem;
   border: 1px solid white;
   border-radius: 10px;
-  margin: 0.5rem; 
+  margin: 0.5rem;   
 }
 
 label{
   text-align: left;
   padding: 0.25rem 0;
+  
 }
 
 input{
@@ -62,3 +171,4 @@ button{
   color: black;
   text-decoration: underline;
 }
+

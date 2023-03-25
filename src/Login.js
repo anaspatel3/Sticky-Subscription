@@ -24,7 +24,7 @@ export default class Login extends Component{
                 Accept:"application/json",
                 "Access-Control-Allow-Origin":""
             },
-            body:JSON.stringify({
+            body: JSON.stringify({
                 email,
                 password,
             }),
@@ -35,11 +35,15 @@ export default class Login extends Component{
             console.log(data, "userRegister");
             if(data.status === "ok") {
                 alert("login Success")
+                window.localStorage.setItem("token",data.data)
+                
+                window.location.href="/Homepage";
+
             }
-            else if(data.status === "noData"){
+            else if(data.status === "error"){
                 alert("User Not Found")
             }
-            else if(data.status === "invalidPass"){
+            else if(data.status === "Invalid"){
                 alert("Invalid Password")
             }
         });
@@ -64,8 +68,8 @@ export default class Login extends Component{
                         onChange={(e) => this.setState({password:e.target.value})} 
                         type="password" 
                         placeholder="***********" 
-                        id="password" 
-                        name="password"
+                        
+                        
                         required/>
 
                     <button className="button1" type="submit">Log In</button>
