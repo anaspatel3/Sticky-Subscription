@@ -16,10 +16,18 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 //Middleware
 app.use(express.json())
-// app.use((req, res, next) => {
-//     console.log(req.path, req.method)
-//     next();
-// })
+
+
+
+
+
+
+
+
+
+
+
+
 
 const JWT_SEC = "sdjhfbdfbsfrq3243fss()YT6rdrgeferg";
 
@@ -30,6 +38,25 @@ app.post('/post', async(req,res) =>{
 
 app.use('/api/subscriptions',subRoutes)
 app.use('/api/user',userRoutes)
+
+
+
+
+
+//Redis 
+const redis = require('redis');
+
+const redisClient = redis.createClient(6379,'127.0.0.1');
+
+redisClient.connect().then(() =>{
+    redisClient.on('error', (err) => {
+        console.log("Error occured while connecting Redis")
+    })
+    console.log("Listening on Redis also"); // OK
+
+ 
+});
+
 
 
 
@@ -56,7 +83,13 @@ app.post("/register", async(req,res) => {
             email,
             password:encryptedPass,
         });
-        res.send({status:"ok"})
+
+           
+        redisClient.set('firstname', firstName, function(err, reply) {
+          });
+          console.log("Data cached successfully")
+          res.send({status:"ok"})
+
     } catch (error) {
         res.send({status:"error"})
     }

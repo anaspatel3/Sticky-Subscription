@@ -106,7 +106,7 @@ export default class Register extends Component{
                         name="password"
                         required/>
     
-                    <button className="button1" type="submit" onClick={() => this.addToCache('myCache','http://localhost:3000/Register','Sample')}>Sign Up</button>
+                    <button className="button1" type="submit">Sign Up</button>
 
                     <p><a href="/Sticky-Subscription">Already Have an Account</a></p>
     

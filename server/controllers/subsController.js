@@ -1,29 +1,44 @@
 const Subscription = require('../models/subsDetails')
 const userDet = require('../server')
 const mongoose = require('mongoose');
-
+const redis = require('redis');
 
 
 //get all subscriptions
 const getSubs = async(req, res) => {
     const subs = await Subscription.find({}).sort({dat: -1})
 
-    res.status(200).json(subs)
+        res.status(200).json(subs)
+    
 }
 
+
 //get a subscription
-const getSub = async(req, res) => {
-    const {id} = req.params
+const getSub = async(req, res, next) => {
 
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: "No such Subscription"})
-    }
-    const sub = await Subscription.findById(id)
+    try {
+        console.log('Fetching Data....')
 
-    if(!sub){
-        return res.status(404).json({error: "No Subscription found" })
+        const {id} = req.params
+
+        if(!mongoose.Types.ObjectId.isValid(id)){
+            return res.status(404).json({error: "No such Subscription"})
+        }
+        const sub = await Subscription.findById(id)
+
+        if(!sub){
+            return res.status(404).json({error: "No Subscription found" })
+        }
+        res.status(200).json(sub)
+        
+
+    } catch (err) {
+        console.log(err)
+        res.status(500)
+
+
     }
-    res.status(200).json(sub)
+    
 }
 
 
@@ -40,6 +55,9 @@ const createSubs = async(req, res) =>{
         res.status(400).json({error: error.message})
     }
 }
+
+
+
 
 //delete a subscription
 const deleteSub = async(req, res) => {

@@ -1,6 +1,7 @@
 const express = require('express')
 
 const {
+    getSub1,
     getSubs,
     createSubs,
     getSub,
